@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"tsis1-aot-api/api"
 )
 
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
@@ -14,11 +15,11 @@ func HealthCheck(w http.ResponseWriter, r *http.Request) {
 
 func Titans(w http.ResponseWriter, r *http.Request) {
 	log.Println("entering persons end point")
-	var response Titan
+	titans := api.Titans
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	jsonResponse, err := json.Marshal(response)
+	jsonResponse, err := json.Marshal(titans)
 	if err != nil {
 		return
 	}
