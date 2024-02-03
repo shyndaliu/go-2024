@@ -1,4 +1,8 @@
-package api
+package aotapi
+
+import (
+	"errors"
+)
 
 type Titan struct {
 	Id        int      `json:"id"`
@@ -19,4 +23,15 @@ var Titans = []Titan{
 	{7, "Beast Titan", "https://www.looper.com/img/gallery/zekes-beast-titan-powers-from-attack-on-titan-explained/l-intro-1620834206.jpg", 17, []string{"Powerful and accurate throwing", "Hardening", "Speech", "Can turn subjects of Ymir into titans that he can crudely control (users with royal blood only)"}, "None"},
 	{8, "Jaw Titan", "https://mangainsider.com/wp-content/uploads/2022/02/Jaw-Titan-Guide.png", 5, []string{"Powerful jaw strength", "Hardened claws", "Great speed and agility"}, "Marley"},
 	{9, "Cart Titan", "https://i.pinimg.com/736x/3f/2d/57/3f2d5757638fd15ef4d0d9dca90ba196.jpg", 4, []string{"Quadrupedal form", "High endurance", "Great speed", "Speech"}, "Marley"},
+}
+
+func GetTitans() []Titan {
+	return Titans
+}
+func GetTitan(t int) (*Titan, error) {
+	if t >= 0 && t <= 8 {
+		return &Titans[t], nil
+	}
+
+	return nil, errors.New("No such titan")
 }
